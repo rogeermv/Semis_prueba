@@ -20,8 +20,8 @@ module tt_um_semis_UABC_2024 (
     wire Vin;
     wire Out;
 
-    assign ui_in[0] = Vip;
-    assign ui_in[1] = Vin;
+    assign Vip = ui_in[0];
+    assign Vin = ui_in[1];
     assign uo_out[0]  = Out;  //Solo usan 1 salida.
     assign uo_out[7:1] = 7'b0000000; //Los que no se usan.
 
