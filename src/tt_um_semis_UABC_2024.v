@@ -19,12 +19,11 @@ module tt_um_semis_UABC_2024 (
     wire Vip;
     wire Vin;
     wire Out;
-    
-    assign uo_out[0]  = Out;  //Solo usan 1 salida.
-    assign uo_out[7:1] = 7'b0000000; //Los que no se usan.
+
     assign Vip = ui_in[0];
     assign Vin = ui_in[1];
-    assign ui_in[7:2] = 6'000000; //Los que no se usan
+    assign uo_out[0]  = Out;  //Solo usan 1 salida.
+    assign uo_out[7:1] = 7'b0000000; //Los que no se usan.
 
     wire INn, INp, CMP, EN, not_EN, Op, On; //internals nets
     not IV1 (INn, Vip);
