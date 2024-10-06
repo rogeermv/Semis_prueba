@@ -16,7 +16,7 @@ module tt_um_semis_UABC_2024 (
     input  wire       rst_n     // reset_n - low to reset
 );
     
-    wire Vip
+    wire Vip;
     wire Vin;
     wire Out;
     
