@@ -25,20 +25,19 @@ module tt_um_semis_UABC_2024 (
     assign uo_out[7:1] = 7'b0000000; 
 
     wire INn, INp, CMP, EN, not_EN, Op, On; //internals nets 
-    // Instancias de compuertas
-    not IV1(INn, Vip);          // INn es la inversa de Vip
-    not IV2(CMP, INn);         // CMP es la inversa de INn
-    not IV3(INp, Vin);         // INp es la inversa de Vin
-    not IV4(not_EN, EN);       // not_EN es la inversa de EN
-    not IV5(Op, INn);          // Op es la inversa de INn
-    not IV6(On, INp);          // On es la inversa de INp
+    not IV1(Vip, INn);                  
+    not IV3(Vin, INp);
+    
+    not IV5(INn, Op);
+    not IV6(INp, On);
+    
+    xor XOR1(Op, On, EN); 
+    not IV7(EN, not_EN);
+    notif1 IT1(Op, not_EN, CMP);  
+    not IV2(CMP, INn); 
+    not IV4(CMP, INp); 
 
-    // Lógica XOR
-    xor XOR1(Op, On, EN);      // Op es el resultado de la XOR entre On y EN
-
-    // Buffers de tres estados
-    bufif1 BT1(Op, EN, Out);   // Buffer activado por EN
-    notif1 IT1(Op, not_EN, CMP); // Buffer negado activado por not_EN
+    bufif1 BT1(Op, EN, Out);   
     //not IV1(Vip, INn);
     //not IV2(CMP, INn);
     //not IV3(Vin, INp);
