@@ -25,16 +25,30 @@ module tt_um_semis_UABC_2024 (
     assign uo_out[7:1] = 7'b0000000; 
 
     wire INn, INp, CMP, EN, not_EN, Op, On; //internals nets 
-    not IV1(Vip, INn);
-    not IV2(CMP, INn);
-    not IV3(Vin, INp);
-    not IV4(CMP, INp);
-    not IV5(INn, Op);
-    not IV6(INp, On);
-    not IV7(EN, not_En);
-    xor XOR1(Op, On, EN);
-    bufif1 BT1(Op, EN, Out);
-    notif1 IT1(Op, not_EN, CMP);
+    // Instancias de compuertas
+    not IV1(INn, Vip);          // INn es la inversa de Vip
+    not IV2(CMP, INn);         // CMP es la inversa de INn
+    not IV3(INp, Vin);         // INp es la inversa de Vin
+    not IV4(not_EN, EN);       // not_EN es la inversa de EN
+    not IV5(Op, INn);          // Op es la inversa de INn
+    not IV6(On, INp);          // On es la inversa de INp
+
+    // Lógica XOR
+    xor XOR1(Op, On, EN);      // Op es el resultado de la XOR entre On y EN
+
+    // Buffers de tres estados
+    bufif1 BT1(Op, EN, Out);   // Buffer activado por EN
+    notif1 IT1(Op, not_EN, CMP); // Buffer negado activado por not_EN
+    //not IV1(Vip, INn);
+    //not IV2(CMP, INn);
+    //not IV3(Vin, INp);
+    //not IV4(CMP, INp);
+    //not IV5(INn, Op);
+    //not IV6(INp, On);
+    //not IV7(EN, not_En);
+    //xor XOR1(Op, On, EN);
+    //bufif1 BT1(Op, EN, Out);
+    //notif1 IT1(Op, not_EN, CMP);
 
     // All output pins must be assigned. If not used, assign to 0.
     assign uio_out = 0;
