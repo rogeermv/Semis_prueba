@@ -24,17 +24,17 @@ module tt_um_semis_UABC_2024 (
     assign uo_out[0]  = Out;  
     assign uo_out[7:1] = 7'b0000000; 
 
-    wire INn, INp, CMP, EN, not_EN, Op, On; //internals nets
-    not IV1 (INn, Vip);
-    not IV2 (INn, CMP);
-    not IV3 (INp, Vin);
-    not IV4 (INp, CMP);
-    not IV5 (Op, INn);
-    not IV6 (On, INp);
-    not IV7 (not_EN, EN);
-    xor XOR1 (EN, Op, On);
-    bufif1 BT1 (Out, EN, Op);
-    notif1 IT1 (CMP, not_EN, Op);
+    wire INn, INp, CM, EN, not_EN, OP, ON; //internals nets
+    not IV1(INn, Vip);
+    not IV2(INn, CM);
+    not IV3(INp, Vin);
+    not IV4(INp, CM);
+    not IV5(OP, INn);
+    not IV6(ON, INp);
+    not IV7(not_EN, EN);
+    xor XOR1(EN, ON, OP);
+    bufif1 BT1(Out, EN, OP);
+    notif1 IT1(CM, not_EN, OP);
 
     // All output pins must be assigned. If not used, assign to 0.
     assign uio_out = 0;
