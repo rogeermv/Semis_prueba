@@ -24,9 +24,14 @@ module tt_um_semis_UABC_2024 (
     assign uo_out[0]  = Out;  
     assign uo_out[7:1] = 7'b0000000; 
 
-    wire INn, INp, CMP, EN, not_EN, Op, On; //internals nets 
-    not IV1(INn, Vip);                  
+    wire INn, INp, INn_CMP, INp_CMP, CMP, EN, not_EN, Op, On; //internals nets 
+    not IV1(INn, Vip);    
+    not INV2(INn_CMP,CMP);
     not IV3(INp, Vin);
+    not INV4(INp_CMP,CMP);
+
+    and AND1(INn, INn, INn_CMP);
+    and AND2(INp, INp, INp_CMP);
     
     not IV5(Op, INn);
     not IV6(On, INp);
