@@ -24,22 +24,22 @@ module tt_um_semis_UABC_2024 (
     assign uo_out[0]  = Out;  
     assign uo_out[7:1] = 7'b0000000; 
 
-    wire INn, INp, CM, EN, not_EN, OP, ON; //internals nets
-    not IV1(INn, Vip);
-    not IV2(INn, CM);
-    not IV3(INp, Vin);
-    not IV4(INp, CM);
-    not IV5(OP, INn);
-    not IV6(ON, INp);
-    not IV7(not_EN, EN);
-    xor XOR1(EN, ON, OP);
-    bufif1 BT1(Out, EN, OP);
-    notif1 IT1(CM, not_EN, OP);
+    wire INn, INp, CMP, EN, not_EN, Op, On; //internals nets 
+    not IV1(Vip, INn);
+    not IV2(CMP, INn);
+    not IV3(Vin, INp);
+    not IV4(CMP, INp;
+    not IV5(INn, Op);
+    not IV6(INp, On);
+    not IV7(EN, not_En);
+    xor XOR1(Op, On, EN);
+    bufif1 BT1(Op, EN, Out);
+    notif1 IT1(Op, not_EN, CMP);
 
     // All output pins must be assigned. If not used, assign to 0.
     assign uio_out = 0;
     assign uio_oe  = 0;
     // List all unused inputs to prevent warnings
-    wire _unused = &{ui_in[7:2],ena, clk, rst_n, uio_in};
+    wire _unused = &{ui_in[7:2], ena, clk, rst_n, uio_in};
 
 endmodule
