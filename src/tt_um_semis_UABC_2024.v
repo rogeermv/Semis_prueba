@@ -36,8 +36,8 @@ module tt_um_semis_UABC_2024 (
     not IV7(not_EN, EN);
     notif1 IT1(CMP, not_EN, Op);  
     
-    not IV2(CMP, INn); 
-    not IV4(CMP, INp); 
+    not IV2(INn, CMP); 
+    not IV4(INp, CMP); 
 
     bufif1 BT1(Out, EN, Op);   
     //not IV1(Vip, INn);
