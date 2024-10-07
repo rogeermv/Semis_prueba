@@ -28,7 +28,7 @@ module tt_um_semis_UABC_2024 (
     not IV1(Vip, INn);
     not IV2(CMP, INn);
     not IV3(Vin, INp);
-    not IV4(CMP, INp;
+    not IV4(CMP, INp);
     not IV5(INn, Op);
     not IV6(INp, On);
     not IV7(EN, not_En);
